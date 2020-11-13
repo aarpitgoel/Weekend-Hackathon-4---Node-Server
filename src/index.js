@@ -4,21 +4,23 @@ const httpServer = http.createServer(handleServer);
 
 
 function handleServer(req, res) {
-  if(req.url === "./welcome"){
-    res.status(200).write('Welcome to Dominos!'); 
+  if(req.url === "/welcome"){
+    response.statusCode = 200;
+    res.write('Welcome to Dominos!');
     res.end();
   }
-  if(req.url === "./contact"){
+  if(req.url === "/contact"){
      const respo = {
           phone: '18602100000',
           email: 'guestcaredominos@jublfood.com'
      }
-     res.status(200).send(respo); 
+    response.statusCode = 200;
+    res.send(respo);
     res.end();
   }
   if(req.url === './'){
-        res.status(404);
-        res.send();
+       response.statusCode = 404;
+        res.end();
   }
 }
 
