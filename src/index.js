@@ -5,26 +5,24 @@ const httpServer = http.createServer(handleServer);
 
 function handleServer(req, res) {
   if(req.url === "/welcome"){
-    response.statusCode = 200;
-    res.write('Welcome to Dominos!');
+    res.writeHead(200,{'Content-Type': 'text/plain'});
+    res.write("Welcome to Dominos!");
     res.end();
-  }
-  if(req.url === "/contact"){
+  }else if(req.url === "/contact"){
      const respo = {
           phone: '18602100000',
           email: 'guestcaredominos@jublfood.com'
      }
-    response.statusCode = 200;
-    res.send(respo);
+     res.writeHead(200,{'Content-Type': 'application/json'});
+    res.write(JSON.stringify(respo));
     res.end();
-  }
-  if(req.url === './'){
-       response.statusCode = 404;
+  }else{
+        res.writeHead(404);
         res.end();
   }
 }
 
-httpServer.handleServer(req, res);
+
 httpServer.listen(8081);
 
 module.exports = httpServer;
